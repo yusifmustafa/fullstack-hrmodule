@@ -10,15 +10,15 @@ function Personal() {
     <div>
       <div className="form">
         <div className="form-group">
+          <TextField name="name" type="text" label="Ad *" variant="standard" />
+        </div>
+        <div className="form-group">
           <TextField
             name="surname"
             type="text"
             label="Soyad *"
             variant="standard"
           />
-        </div>
-        <div className="form-group">
-          <TextField name="name" type="text" label="Adı *" variant="standard" />
         </div>
         <div className="form-group">
           <TextField
@@ -35,15 +35,7 @@ function Personal() {
             variant="standard"
             type="text"
           />
-        </div>
-        <div className="form-group">
-          <TextField
-            name="oneCCode"
-            type="text"
-            variant="standard"
-            label="1C Kodu *"
-          />
-        </div>
+        </div>{" "}
         <div className="form-group">
           <FormControl style={{ width: "200px" }}>
             <InputLabel id="demo-simple-select-label">
@@ -149,8 +141,40 @@ function Personal() {
             type="text"
           />
         </div>
+        <div className="form-group">
+          <FormControl style={{ width: "250px" }}>
+            <InputLabel id="demo-simple-select-label">
+              ŞV Verən Orqan{" "}
+            </InputLabel>
+
+            <Select name="idprovider" variant="standard" label="ŞV Verən Orqan">
+              <MenuItem value="Asan 1">Asan 1</MenuItem>
+              <MenuItem value="Asan 2">Asan 2</MenuItem>
+              <MenuItem value="Asan 3">Asan 3</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+        <div className="form-group">
+          <FormControl style={{ width: "250px" }}>
+            <InputLabel id="demo-simple-select-label">
+              Hərbi mükəlləfiyyəti
+            </InputLabel>
+
+            <Select
+              name="militaryStatus"
+              variant="standard"
+              label="Hərbi mükəlləfiyyət"
+            >
+              <MenuItem value="H/M">H/M</MenuItem>
+              <MenuItem value="Yoxdur">Yoxdur</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
       </div>
-      <Button id="addUser" variant="contained">
+      <Button
+        style={{ float: "right", marginRight: "2rem", marginTop: "20px" }}
+        variant="contained"
+      >
         ƏLAVƏ ET
       </Button>
     </div>

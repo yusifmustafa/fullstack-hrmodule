@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 export const UserContext = React.createContext({});
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = {
+  openModal: false,
+};
 const UserContextProvider = (props) => {
   const [state, setState] = useState(INITIAL_STATE);
   const navigate = useNavigate();
@@ -13,6 +15,8 @@ const UserContextProvider = (props) => {
         ...state,
         navigateToHomePage: navigateToHomePage,
         navigateToAddUser: navigateToAddUser,
+        openDialog: openDialog,
+        closeDialog: closeDialog,
       }}
     >
       {props.children}
@@ -24,6 +28,13 @@ const UserContextProvider = (props) => {
   }
   function navigateToAddUser() {
     navigate("/adduser");
+  }
+
+  function openDialog() {
+    setState({ ...state, openModal: true });
+  }
+  function closeDialog() {
+    setState({ ...state, openModal: false });
   }
 };
 export default UserContextProvider;
