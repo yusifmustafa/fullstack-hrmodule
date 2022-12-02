@@ -2,14 +2,22 @@ import {
   AppBar,
   Box,
   Button,
+  FormGroup,
   IconButton,
+  InputAdornment,
+  TextField,
   Toolbar,
   Typography,
 } from "@mui/material";
 import { GridMenuIcon } from "@mui/x-data-grid";
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../Context/UserContextProvider";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 
 const Navbar = () => {
+  const context = useContext(UserContext);
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -27,7 +35,10 @@ const Navbar = () => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Employees
             </Typography>
-            <Button color="inherit">Add User</Button>
+
+            <Button onClick={() => context.navigateToAddUser()} color="inherit">
+              <PersonAddAlt1Icon />
+            </Button>
           </Toolbar>
         </AppBar>
       </Box>

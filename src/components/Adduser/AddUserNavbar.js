@@ -1,27 +1,20 @@
 import React from "react";
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, Toolbar } from "@mui/material";
 import { Box } from "@mui/system";
-import { GridMenuIcon } from "@mui/x-data-grid";
 import ForwardIcon from "@mui/icons-material/Forward";
+import { UserContext } from "../../Context/UserContextProvider";
 const AddUserNavbar = () => {
+  const context = React.useContext(UserContext);
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
+          <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button
               color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
+              onClick={() => context.navigateToHomePage()}
             >
-              <GridMenuIcon />
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Employees
-            </Typography>
-            <Button color="inherit">
               <ForwardIcon />
             </Button>
           </Toolbar>

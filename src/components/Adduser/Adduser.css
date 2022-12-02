@@ -75,6 +75,7 @@ label {
   opacity: 0.6;
 }
 
+
 input:focus + label {
   font-size: 14px;
   top: 0;
