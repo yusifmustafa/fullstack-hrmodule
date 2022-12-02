@@ -1,8 +1,8 @@
-import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import { GridMenuIcon } from '@mui/x-data-grid';
-import React from 'react'
-
+import React from "react";
+import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { GridMenuIcon } from "@mui/x-data-grid";
+import ForwardIcon from "@mui/icons-material/Forward";
 const AddUserNavbar = () => {
   return (
     <>
@@ -21,12 +21,14 @@ const AddUserNavbar = () => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Employees
             </Typography>
-            <Button color="inherit">Add User</Button>
+            <Button color="inherit">
+              <ForwardIcon />
+            </Button>
           </Toolbar>
         </AppBar>
       </Box>
     </>
   );
-}
+};
 
 export default AddUserNavbar;
