@@ -25,7 +25,7 @@ const DataList = () => {
   const THead = styled(TableRow)`
     & > th {
       font-size: 20px;
-      background: #000;
+      background: #1976d2;
       color: #fff;
     }
   `;

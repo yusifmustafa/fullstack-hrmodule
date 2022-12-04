@@ -13,18 +13,17 @@ const DeleteDialog = () => {
   return (
     <div>
       <DialogTitle id="alert-dialog-title">
-        {"Use Google's location service?"}
+        {"İstifadəçinin Sistemdən Silinməsi "}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          Let Google help apps determine location. This means sending anonymous
-          location data to Google, even when no apps are running.
+        İstifadəçini silmək istədiyinizə əminsinizmi? sildiyiniz İstifadəçini geri qaytarmaq mümkün olmayacaqdır. 
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => context.closeDialog()}>Disagree</Button>
+        <Button onClick={() => context.closeDialog()}>Geri Qayıt</Button>
         <Button onClick={() => console.log("Agree")} autoFocus>
-          Agree
+          Sİl
         </Button>
       </DialogActions>
     </div>

@@ -5,7 +5,9 @@ export const UserContext = React.createContext({});
 
 const INITIAL_STATE = {
   openModal: false,
+  user: {},
 };
+console.log(INITIAL_STATE.user);
 const UserContextProvider = (props) => {
   const [state, setState] = useState(INITIAL_STATE);
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ const UserContextProvider = (props) => {
         navigateToAddUser: navigateToAddUser,
         openDialog: openDialog,
         closeDialog: closeDialog,
+        handleOnChange: handleOnChange,
       }}
     >
       {props.children}
@@ -35,6 +38,15 @@ const UserContextProvider = (props) => {
   }
   function closeDialog() {
     setState({ ...state, openModal: false });
+  }
+
+  function handleOnChange(event) {
+    const { name, value } = event;
+    setState(
+      Object.assign({}, state, {
+        user: Object.assign({}, state.user, { [name]: value }),
+      })
+    );
   }
 };
 export default UserContextProvider;
