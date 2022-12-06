@@ -10,6 +10,7 @@ import { UserContext } from "../../Context/UserContextProvider";
 
 const DeleteDialog = () => {
   const context = useContext(UserContext);
+  const { deletedUserId } = context;
   return (
     <div>
       <DialogTitle id="alert-dialog-title">
@@ -17,12 +18,17 @@ const DeleteDialog = () => {
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-        İstifadəçini silmək istədiyinizə əminsinizmi? sildiyiniz İstifadəçini geri qaytarmaq mümkün olmayacaqdır. 
+          İstifadəçini silmək istədiyinizə əminsinizmi? sildiyiniz İstifadəçini
+          geri qaytarmaq mümkün olmayacaqdır.
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={() => context.closeDialog()}>Geri Qayıt</Button>
-        <Button onClick={() => console.log("Agree")} autoFocus>
+        <Button
+          onClick={() => {
+            context.deleteUser(deletedUserId);
+          }}
+        >
           Sİl
         </Button>
       </DialogActions>

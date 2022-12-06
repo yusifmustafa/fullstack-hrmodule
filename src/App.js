@@ -10,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Emptable />} />
           <Route path="/adduser" element={<Adduser />} />
+          <Route path="/edit-user/:id" element={<Adduser />} />
         </Routes>
       </UserContextProvider>
     </div>

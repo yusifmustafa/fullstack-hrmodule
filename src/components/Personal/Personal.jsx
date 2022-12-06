@@ -1,18 +1,35 @@
 import { InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FormControl } from "@mui/material";
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../../Context/UserContextProvider";
 export const blockInvalidChar = (e) =>
   ["e", "E", "+", "-", ",", "."].includes(e.key) && e.preventDefault();
 
 const Personal = () => {
-  const context = useContext(UserContext);
-  const { handleOnChange, user } = context;
+  const notify1 = () => toast.success("İstifadəçi əlavə edildi!");
 
-  const handleOnSubmit = (e) => {
-    console.log(user);
+  const context = useContext(UserContext);
+  const { handleOnChange, user, updatePerson, getUserInfoById } = context;
+  const navigate = useNavigate();
+  const { id } = useParams();
+  useEffect(() => {
+    getUserInfoById(id);
+  }, [id]);
+  const handleOnSubmit = (user) => {
+    console.log("nulluser", user);
+    if (user.id === undefined || user.id === 0) {
+      context.InsertPerson(user);
+      notify1();
+      navigate("/");
+    } else if (user.id > 0) {
+      updatePerson(id, user);
+      navigate("/");
+    }
   };
   return (
     <div>
@@ -59,7 +76,7 @@ const Personal = () => {
                 value: event.target.value,
               });
             }}
-            value={user.patronymic}
+            value={user.patronymic ? user.patronymic : ""}
           />
         </div>
         <div className="form-group">
@@ -304,10 +321,11 @@ const Personal = () => {
       <Button
         style={{ float: "right", marginRight: "2rem", marginTop: "20px" }}
         variant="contained"
-        onClick={handleOnSubmit}
+        onClick={() => handleOnSubmit(user)}
       >
         ƏLAVƏ ET
       </Button>
+      <ToastContainer />
     </div>
   );
 };

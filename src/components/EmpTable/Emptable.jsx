@@ -12,11 +12,17 @@ import Navbar from "../Navbar/Navbar";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteDialog from "./DeleteDialog";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../Context/UserContextProvider";
+import { Link } from "react-router-dom";
 
 const DataList = () => {
   const context = useContext(UserContext);
+  const { userList } = context;
+  useEffect(() => {
+    context.getAllUser();
+  }, []);
+
   const StyledTable = styled(Table)`
     width: 90%;
     margin: 0 auto;
@@ -53,24 +59,30 @@ const DataList = () => {
           </THead>
         </TableHead>
         <TableBody>
-          <TRow>
-            <TableCell>1</TableCell>
-            <TableCell>Yusu</TableCell>
-            <TableCell>Yusif</TableCell>
-            <TableCell>Musss</TableCell>
-            <TableCell>Kisi</TableCell>
-            <TableCell>nanana</TableCell>
-            <TableCell>Kapital</TableCell>
-            <TableCell>Asan</TableCell>
-            <TableCell>
-              <Button style={{ marginRight: 10 }}>
-                <EditIcon />
-              </Button>
-              <Button onClick={() => context.openDialog()}>
-                <DeleteIcon />
-              </Button>
-            </TableCell>
-          </TRow>
+          {userList?.map((user, key) => (
+            <TRow key={user.id}>
+              <TableCell>{user.id}</TableCell>
+              <TableCell>{user.name}</TableCell>
+              <TableCell>{user.surname}</TableCell>
+              <TableCell>{user.patronymic}</TableCell>
+              <TableCell>{user.username}</TableCell>
+              <TableCell>{user.gender}</TableCell>
+              <TableCell>{user.idprovider}</TableCell>
+              <TableCell>Boşdur</TableCell>
+              <TableCell>
+                <Link to={`/edit-user/${user.id}`} style={{ marginRight: 10 }}>
+                  <EditIcon />
+                </Link>
+                <Button
+                  onClick={() => {
+                    context.openDialog(user.id);
+                  }}
+                >
+                  <DeleteIcon />
+                </Button>
+              </TableCell>
+            </TRow>
+          ))}
         </TableBody>
       </StyledTable>
       <div>
