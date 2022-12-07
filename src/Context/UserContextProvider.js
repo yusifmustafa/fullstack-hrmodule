@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Api from "../utils/Api";
+ import Api from "../utils/Api";
 export const UserContext = React.createContext({});
 const URL_ALL_USER = "/";
 const URL_USER_INFO_BY_ID = "/{id}";
@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   deletedUserId: {},
 };
 const UserContextProvider = (props) => {
-  const [state, setState] = useState(INITIAL_STATE);
+   const [state, setState] = useState(INITIAL_STATE);
   const navigate = useNavigate();
   return (
     <UserContext.Provider
@@ -41,6 +41,7 @@ const UserContextProvider = (props) => {
   }
   function navigateToAddUser() {
     navigate("/adduser");
+    setState({ user: {} });
   }
 
   function openDialog(id) {
@@ -61,7 +62,7 @@ const UserContextProvider = (props) => {
   function getAllUser() {
     Api.get(URL_ALL_USER).then((rsp) => {
       const responseUsers = rsp?.data;
-      setState({ ...state, userList: responseUsers });
+      setState({ ...state, userList: responseUsers, openModal: false });
     });
   }
 
@@ -96,18 +97,16 @@ const UserContextProvider = (props) => {
     Api.delete(URL_DELETE_USER.replace("{id}", id)).then(() => {
       getAllUser();
     });
-  }
+   }
 
   function InsertPerson(user) {
     Api.post(URL_ADD_USER, user).then(() => {
       getAllUser();
     });
-    setState({ user: {} });
+    // setState({ user: {} });
   }
 
   function updatePerson(id, user) {
-    console.log("idddd;", id);
-    console.log("userrr: ", user);
     const url = URL_UPDATE_USER.replace("{id}", id);
     Api.put(url, user).then((rsp) => {
       const responseData = rsp?.data;

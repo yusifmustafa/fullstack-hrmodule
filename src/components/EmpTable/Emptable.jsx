@@ -1,6 +1,5 @@
 import {
   Button,
-  Dialog,
   styled,
   Table,
   TableBody,
@@ -11,12 +10,32 @@ import {
 import Navbar from "../Navbar/Navbar";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteDialog from "./DeleteDialog";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../Context/UserContextProvider";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const DataList = () => {
+  const { user } = useContext(UserContext);
+  console.log(user);
+  const handleDeleteUser = (id) => {
+    Swal.fire({
+      title: "Silmək İstədiyinizə Əminsinizmi?",
+      text: "Silinən məlumatı geri qaytarmaq mümkün deyil!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sil",
+      cancelButtonText: "Geri Qayıt",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        context.deleteUser(id);
+        Swal.fire(`${(user.name, user.surname)} adlı istifadəçi silindi!`);
+      }
+    });
+  };
+
   const context = useContext(UserContext);
   const { userList } = context;
   useEffect(() => {
@@ -75,7 +94,7 @@ const DataList = () => {
                 </Link>
                 <Button
                   onClick={() => {
-                    context.openDialog(user.id);
+                    handleDeleteUser(user.id);
                   }}
                 >
                   <DeleteIcon />
@@ -85,15 +104,6 @@ const DataList = () => {
           ))}
         </TableBody>
       </StyledTable>
-      <div>
-        <Dialog
-          open={context.openModal}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DeleteDialog />
-        </Dialog>
-      </div>
     </div>
   );
 };
