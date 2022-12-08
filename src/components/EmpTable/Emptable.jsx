@@ -17,7 +17,6 @@ import Swal from "sweetalert2";
 
 const DataList = () => {
   const { user } = useContext(UserContext);
-  console.log(user);
   const handleDeleteUser = (id) => {
     Swal.fire({
       title: "Silmək İstədiyinizə Əminsinizmi?",
@@ -31,7 +30,7 @@ const DataList = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         context.deleteUser(id);
-        Swal.fire(`${(user.name, user.surname)} adlı istifadəçi silindi!`);
+        Swal.fire(`İstifadəçi silindi!`);
       }
     });
   };

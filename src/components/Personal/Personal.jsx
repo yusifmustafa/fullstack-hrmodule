@@ -29,28 +29,12 @@ const Personal = () => {
       e.patronymic === undefined ||
       e.username === "" ||
       e.username === undefined ||
-      e.identification === "" ||
-      e.identification === undefined ||
       e.idnumber === "" ||
       e.idnumber === undefined ||
-      e.birthPlace === "" ||
-      e.birthPlace === undefined ||
-      e.birthDate === "" ||
-      e.birthDate === undefined ||
       e.pincode === "" ||
       e.pincode === undefined ||
-      e.bloodGroupId === undefined ||
-      e.bloodGroupId === undefined ||
-      e.maritalStatus === "" ||
-      e.maritalStatus === undefined ||
-      e.gender === "" ||
-      e.gender === undefined ||
       e.citizenship === "" ||
-      e.citizenship === undefined ||
-      e.idprovider === "" ||
-      e.idprovider === undefined ||
-      e.militaryStatus === "" ||
-      e.militaryStatus === undefined
+      e.citizenship === undefined
     ) {
       Swal.fire({
         position: "top-end",
@@ -89,7 +73,8 @@ const Personal = () => {
           <TextField
             name="name"
             type="text"
-            label="Ad *"
+            label="Ad"
+            required
             variant="standard"
             onChange={(event) => {
               handleOnChange({
@@ -104,7 +89,8 @@ const Personal = () => {
           <TextField
             name="surname"
             type="text"
-            label="Soyad *"
+            label="Soyad"
+            required
             variant="standard"
             onChange={(event) =>
               handleOnChange({
@@ -119,7 +105,8 @@ const Personal = () => {
           <TextField
             name="patronymic"
             type="text"
-            label="Ata Adı *"
+            label="Ata Adı"
+            required
             variant="standard"
             onChange={(event) => {
               handleOnChange({
@@ -133,7 +120,8 @@ const Personal = () => {
         <div className="form-group">
           <TextField
             name="username"
-            label="İstifadəçi Adı *"
+            label="İstifadəçi Adı"
+            required
             variant="standard"
             type="text"
             onChange={(event) => {
@@ -175,7 +163,8 @@ const Personal = () => {
         <div className="form-group">
           <TextField
             name="idnumber"
-            label="Şəxsiyyət vəsiqəsi nömrəsi *"
+            label="Şəxsiyyət vəsiqəsi nömrəsi"
+            required
             variant="standard"
             type="text"
             onChange={(event) => {
@@ -222,7 +211,8 @@ const Personal = () => {
         <div className="form-group">
           <TextField
             name="pincode"
-            label="Fin Kodu *"
+            label="Fin Kodu"
+            required
             variant="standard"
             type="text"
             onChange={(event) => {
@@ -308,7 +298,8 @@ const Personal = () => {
         <div className="form-group">
           <TextField
             name="citizenship"
-            label="Vətəndaşlığı *"
+            label="Vətəndaşlığı"
+            required
             variant="standard"
             sx={{ width: "200px" }}
             type="text"
