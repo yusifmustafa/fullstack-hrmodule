@@ -16,7 +16,6 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const DataList = () => {
-  const { user } = useContext(UserContext);
   const handleDeleteUser = (id) => {
     Swal.fire({
       title: "Silmək İstədiyinizə Əminsinizmi?",
@@ -37,6 +36,7 @@ const DataList = () => {
 
   const context = useContext(UserContext);
   const { userList } = context;
+  console.log("userList: ", userList);
   useEffect(() => {
     context.getAllUser();
   }, []);
@@ -71,22 +71,20 @@ const DataList = () => {
             <TableCell>Ata adı</TableCell>
             <TableCell>İstifadəçi adı</TableCell>
             <TableCell>Cinsi</TableCell>
-            <TableCell>ŞV verən orqanın adı</TableCell>
             <TableCell>Vəzifəsi</TableCell>
             <TableCell></TableCell>
           </THead>
         </TableHead>
         <TableBody>
-          {userList?.map((user, key) => (
-            <TRow key={user.id}>
-              <TableCell>{user.id}</TableCell>
-              <TableCell>{user.name}</TableCell>
-              <TableCell>{user.surname}</TableCell>
-              <TableCell>{user.patronymic}</TableCell>
-              <TableCell>{user.username}</TableCell>
-              <TableCell>{user.gender}</TableCell>
-              <TableCell>{user.idprovider}</TableCell>
-              <TableCell>Boşdur</TableCell>
+          {(userList ? userList : []).map((user) => (
+            <TRow key={user?.id}>
+              <TableCell>{user?.id}</TableCell>
+              <TableCell>{user?.name}</TableCell>
+              <TableCell>{user?.surname}</TableCell>
+              <TableCell>{user?.patronymic}</TableCell>
+              <TableCell>{user?.username}</TableCell>
+              <TableCell>{user?.gender}</TableCell>
+              <TableCell>{user?.positionname}</TableCell>
               <TableCell>
                 <Link to={`/edit-user/${user.id}`} style={{ marginRight: 10 }}>
                   <EditIcon />

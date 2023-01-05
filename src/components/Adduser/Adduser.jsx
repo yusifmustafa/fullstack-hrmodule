@@ -6,6 +6,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import AddUserNavbar from "./AddUserNavbar";
 import "./Adduser.css";
 import Personal from "../Personal/Personal";
+import Position from "../../Position/Position";
 const Adduser = () => {
   const [value, setValue] = React.useState("1");
 
@@ -24,15 +25,17 @@ const Adduser = () => {
                 onChange={handleChange}
                 aria-label="lab API tabs example"
               >
-                <Tab className="tab" label="Yeni İşçi Əlavə et" value="1" />
-                <Tab className="tab" label="Item Two" value="2" />
+                <Tab className="tab" label="Yenİ İŞÇİ Əlavə et" value="1" />
+                <Tab className="tab" label="İşÇİNİN Vəzİfəsİ" value="2" />
                 <Tab className="tab" label="Item Three" value="3" />
               </TabList>
             </Box>
             <TabPanel value="1">
               <Personal />
             </TabPanel>
-            <TabPanel value="2">Item Two</TabPanel>
+            <TabPanel value="2">
+              <Position />
+            </TabPanel>
             <TabPanel value="3">Item Three</TabPanel>
           </TabContext>
         </Box>

@@ -3,6 +3,7 @@ import Emptable from "./components/EmpTable/Emptable";
 import { Route, Routes } from "react-router-dom";
 import Adduser from "./components/Adduser/Adduser";
 import UserContextProvider from "./Context/UserContextProvider";
+import Position from "./Position/Position";
 function App() {
   return (
     <div className="App">
@@ -11,6 +12,7 @@ function App() {
           <Route path="/" element={<Emptable />} />
           <Route path="/adduser" element={<Adduser />} />
           <Route path="/edit-user/:id" element={<Adduser />} />
+          <Route path="/position/:id" element={<Position />} />
         </Routes>
       </UserContextProvider>
     </div>
