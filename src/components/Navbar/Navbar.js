@@ -1,20 +1,9 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  FormGroup,
-  IconButton,
-  InputAdornment,
-  TextField,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import { GridMenuIcon } from "@mui/x-data-grid";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { UserContext } from "../../Context/UserContextProvider";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
-import PersonSearchIcon from "@mui/icons-material/PersonSearch";
-
+import "./Navbar.css";
+import Sidebar from "./Sidebar";
 const Navbar = () => {
   const context = useContext(UserContext);
 
@@ -23,15 +12,8 @@ const Navbar = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <GridMenuIcon />
-            </IconButton>
+            <Sidebar />
+
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Employees
             </Typography>
