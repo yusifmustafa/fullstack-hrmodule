@@ -7,7 +7,7 @@ const Position = () => {
   const context = useContext(UserContext);
   const { getAllPosition, positions, user, handleOnChange } = context;
   console.log("positions: ", positions);
-  console.log("user: ", user);
+  console.log("userrrrrrr: ", user);
   useEffect(() => {
     getAllPosition();
   }, []);

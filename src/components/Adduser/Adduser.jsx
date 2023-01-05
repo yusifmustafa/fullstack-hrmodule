@@ -1,5 +1,5 @@
-import { Box, Tab } from "@mui/material";
-import React from "react";
+import { Box, Button, Tab } from "@mui/material";
+import React, { useContext, useEffect } from "react";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
@@ -7,13 +7,71 @@ import AddUserNavbar from "./AddUserNavbar";
 import "./Adduser.css";
 import Personal from "../Personal/Personal";
 import Position from "../../Position/Position";
+import Swal from "sweetalert2";
+import { useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "../../Context/UserContextProvider";
 const Adduser = () => {
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const context = useContext(UserContext);
+  const { user, updatePerson, getUserInfoById } = context;
+  console.log("user", user);
+  const navigate = useNavigate();
+  const { id } = useParams();
+  useEffect(() => {
+    getUserInfoById(id);
+  }, [id]);
 
+  const handleOnSubmit = (e) => {
+    if (
+      e.name === "" ||
+      e.name === undefined ||
+      e.surname === "" ||
+      e.surname === undefined ||
+      e.patronymic === "" ||
+      e.patronymic === undefined ||
+      e.username === "" ||
+      e.username === undefined ||
+      e.idnumber === "" ||
+      e.idnumber === undefined ||
+      e.pincode === "" ||
+      e.pincode === undefined ||
+      e.citizenship === "" ||
+      e.citizenship === undefined
+    ) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Xanaları tam doldurun",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    } else if (user.id === undefined || user.id === 0) {
+      context.InsertPerson(user);
+      context.navigateToHomePage();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "İstifadəçi Əlavə olundu",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (user.id > 0) {
+      updatePerson(id, user);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Dəyişikliklər yadda saxlanıldı",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    }
+  };
   return (
     <>
       <AddUserNavbar />
@@ -39,6 +97,13 @@ const Adduser = () => {
             <TabPanel value="3">Item Three</TabPanel>
           </TabContext>
         </Box>
+        <Button
+          style={{ float: "right", marginRight: "2rem", marginTop: "20px" }}
+          variant="contained"
+          onClick={() => handleOnSubmit(user)}
+        >
+          ƏLAVƏ ET
+        </Button>
       </div>
     </>
   );

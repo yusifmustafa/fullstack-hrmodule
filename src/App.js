@@ -12,8 +12,7 @@ function App() {
           <Route path="/" element={<Emptable />} />
           <Route path="/adduser" element={<Adduser />} />
           <Route path="/edit-user/:id" element={<Adduser />} />
-          <Route path="/position/:id" element={<Position />} />
-        </Routes>
+       </Routes>
       </UserContextProvider>
     </div>
   );

@@ -65,7 +65,7 @@ const UserContextProvider = (props) => {
   function getAllUser() {
     Api.get(URL_ALL_USER).then((rsp) => {
       const responseUsers = rsp?.data;
-       setState({ ...state, userList: responseUsers, openModal: false });
+      setState({ ...state, userList: responseUsers, openModal: false });
     });
   }
 
@@ -90,6 +90,7 @@ const UserContextProvider = (props) => {
           citizenship: item.citizenship,
           idprovider: item.idprovider,
           militaryStatus: item.militaryStatus,
+          posId: item.posId,
         };
         setState({ ...state, user: obj });
       });
@@ -113,6 +114,7 @@ const UserContextProvider = (props) => {
     const url = URL_UPDATE_USER.replace("{id}", id);
     Api.put(url, user).then((rsp) => {
       const responseData = rsp?.data;
+      console.log("responseDatazzz", responseData);
       setState({ ...state, user: responseData });
     });
   }

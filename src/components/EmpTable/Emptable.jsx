@@ -1,5 +1,6 @@
 import {
   Button,
+  CircularProgress,
   styled,
   Table,
   TableBody,
@@ -36,6 +37,8 @@ const DataList = () => {
 
   const context = useContext(UserContext);
   const { userList } = context;
+
+
   console.log("userList: ", userList);
   useEffect(() => {
     context.getAllUser();
@@ -76,29 +79,36 @@ const DataList = () => {
           </THead>
         </TableHead>
         <TableBody>
-          {(userList ? userList : []).map((user) => (
-            <TRow key={user?.id}>
-              <TableCell>{user?.id}</TableCell>
-              <TableCell>{user?.name}</TableCell>
-              <TableCell>{user?.surname}</TableCell>
-              <TableCell>{user?.patronymic}</TableCell>
-              <TableCell>{user?.username}</TableCell>
-              <TableCell>{user?.gender}</TableCell>
-              <TableCell>{user?.positionname}</TableCell>
-              <TableCell>
-                <Link to={`/edit-user/${user.id}`} style={{ marginRight: 10 }}>
-                  <EditIcon />
-                </Link>
-                <Button
-                  onClick={() => {
-                    handleDeleteUser(user.id);
-                  }}
-                >
-                  <DeleteIcon />
-                </Button>
-              </TableCell>
-            </TRow>
-          ))}
+          {userList ? (
+            userList.map((user,key) => (
+              <TRow key={user?.id}>
+                <TableCell>{user?.id}</TableCell>
+                <TableCell>{user?.name}</TableCell>
+                <TableCell>{user?.surname}</TableCell>
+                <TableCell>{user?.patronymic}</TableCell>
+                <TableCell>{user?.username}</TableCell>
+                <TableCell>{user.gender? user.gender : "Seçilməyib"}</TableCell>
+                <TableCell>{user?.positionname}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/edit-user/${user.id}`}
+                    style={{ marginRight: 10 }}
+                  >
+                    <EditIcon />
+                  </Link>
+                  <Button
+                    onClick={() => {
+                      handleDeleteUser(user.id);
+                    }}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </TableCell>
+              </TRow>
+            ))
+          ) : (
+            <CircularProgress />
+          )}
         </TableBody>
       </StyledTable>
     </div>
