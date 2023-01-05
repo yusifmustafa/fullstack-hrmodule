@@ -6,10 +6,7 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { useNavigate } from "react-router-dom";
 
 export default function TemporaryDrawer() {
@@ -24,6 +21,10 @@ export default function TemporaryDrawer() {
 
   const navigateToHome = () => {
     navigate("/");
+  };
+
+  const navigateToAddUser = () => {
+    navigate("/adduser");
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -48,6 +49,11 @@ export default function TemporaryDrawer() {
         <ListItem disablePadding>
           <ListItemButton onClick={navigateToHome}>
             <ListItemText primary="Bütün işçilər" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={navigateToAddUser}>
+            <ListItemText primary="Yeni İşçi Əlavə et" />
           </ListItemButton>
         </ListItem>
       </List>
