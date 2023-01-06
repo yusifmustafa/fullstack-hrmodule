@@ -10,6 +10,7 @@ import Position from "../../Position/Position";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../Context/UserContextProvider";
+import Department from "../Department/Department";
 const Adduser = () => {
   const [value, setValue] = React.useState("1");
 
@@ -85,7 +86,7 @@ const Adduser = () => {
               >
                 <Tab className="tab" label="Yenİ İŞÇİ Əlavə et" value="1" />
                 <Tab className="tab" label="İşÇİNİN Vəzİfəsİ" value="2" />
-                <Tab className="tab" label="Item Three" value="3" />
+                <Tab className="tab" label="Departament" value="3" />
               </TabList>
             </Box>
             <TabPanel value="1">
@@ -94,7 +95,9 @@ const Adduser = () => {
             <TabPanel value="2">
               <Position />
             </TabPanel>
-            <TabPanel value="3">Item Three</TabPanel>
+            <TabPanel value="3">
+              <Department />
+            </TabPanel>
           </TabContext>
         </Box>
         <Button

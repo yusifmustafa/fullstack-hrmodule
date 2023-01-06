@@ -8,13 +8,16 @@ const URL_ADD_USER = "/";
 const URL_UPDATE_USER = "/{id}";
 const URL_DELETE_USER = "/{id}";
 const URL_ALL_POSITIONS = "/api/position";
+const URL_ALL_DEPARTMENTS = "/api/department";
 const INITIAL_STATE = {
   openModal: false,
   user: {},
   userList: [],
   deletedUserId: {},
   positions: [],
+  department: [],
 };
+console.log("userrrrr", INITIAL_STATE.user);
 const UserContextProvider = (props) => {
   const [state, setState] = useState(INITIAL_STATE);
   const navigate = useNavigate();
@@ -33,6 +36,7 @@ const UserContextProvider = (props) => {
         InsertPerson: InsertPerson,
         updatePerson: updatePerson,
         getAllPosition: getAllPosition,
+        getAllDepartment: getAllDepartment,
       }}
     >
       {props.children}
@@ -73,6 +77,7 @@ const UserContextProvider = (props) => {
     Api.get(URL_USER_INFO_BY_ID.replace("{id}", id)).then((rsp) => {
       const responseUser = rsp?.data;
       responseUser.map((item) => {
+        console.log("itemmm", item);
         const obj = {
           id: item.id,
           name: item.name,
@@ -91,6 +96,7 @@ const UserContextProvider = (props) => {
           idprovider: item.idprovider,
           militaryStatus: item.militaryStatus,
           posId: item.posId,
+          depId: item.depId,
         };
         setState({ ...state, user: obj });
       });
@@ -124,6 +130,14 @@ const UserContextProvider = (props) => {
       const responseData = rsp?.data;
       console.log("rspData", responseData);
       setState({ ...state, positions: responseData });
+    });
+  }
+
+  function getAllDepartment() {
+    Api.get(URL_ALL_DEPARTMENTS).then((rsp) => {
+      const responseData = rsp?.data;
+      console.log("department responseData: ", responseData);
+      setState({ ...state, department: responseData });
     });
   }
 };

@@ -19,7 +19,7 @@ const Position = () => {
           name="posId"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          label="Age"
+          label="Position"
           onChange={(event) =>
             handleOnChange({
               name: event.target.name,

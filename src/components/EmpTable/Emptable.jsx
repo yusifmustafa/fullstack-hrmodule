@@ -38,7 +38,6 @@ const DataList = () => {
   const context = useContext(UserContext);
   const { userList } = context;
 
-
   console.log("userList: ", userList);
   useEffect(() => {
     context.getAllUser();
@@ -69,26 +68,30 @@ const DataList = () => {
         <TableHead>
           <THead>
             <TableCell>ID</TableCell>
-            <TableCell>Adı</TableCell>
-            <TableCell>Soyadı</TableCell>
+            <TableCell>Ad</TableCell>
+            <TableCell>Soyad</TableCell>
             <TableCell>Ata adı</TableCell>
             <TableCell>İstifadəçi adı</TableCell>
-            <TableCell>Cinsi</TableCell>
-            <TableCell>Vəzifəsi</TableCell>
+            <TableCell>Cins</TableCell>
+            <TableCell>Vəzifə</TableCell>
+            <TableCell>Departament</TableCell>
             <TableCell></TableCell>
           </THead>
         </TableHead>
         <TableBody>
           {userList ? (
-            userList.map((user,key) => (
+            userList.map((user, key) => (
               <TRow key={user?.id}>
                 <TableCell>{user?.id}</TableCell>
                 <TableCell>{user?.name}</TableCell>
                 <TableCell>{user?.surname}</TableCell>
                 <TableCell>{user?.patronymic}</TableCell>
                 <TableCell>{user?.username}</TableCell>
-                <TableCell>{user.gender? user.gender : "Seçilməyib"}</TableCell>
+                <TableCell>
+                  {user.gender ? user.gender : "Seçilməyib"}
+                </TableCell>
                 <TableCell>{user?.positionname}</TableCell>
+                <TableCell>{user?.dep_title}</TableCell>
                 <TableCell>
                   <Link
                     to={`/edit-user/${user.id}`}
